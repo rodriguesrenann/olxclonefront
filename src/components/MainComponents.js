@@ -17,7 +17,15 @@ const PageBody = styled.div`
 
 `;
 
+const ErrorMessage = styled.div`
+    margin: 10px 0px;
+    background-color: #FFCACA;
+    color: #000;
+    border: 2px solid #FF0000;
+    padding: 10px;
+`
+
 export {
     Template, PageContainer,
-    PageTitle, PageBody
+    PageTitle, PageBody, ErrorMessage
 };
