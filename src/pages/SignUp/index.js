@@ -31,7 +31,7 @@ const Page = () => {
         setDisabled(true);
         setError('');
 
-        const json = await api.register(name, email, password, stateLoc);
+        const json = await api.register(name, email, password, passwordConfirm, stateLoc);
 
         if (json.error) {
             setError(json.error);
@@ -65,7 +65,7 @@ const Page = () => {
                             Estado
                         </div>
                         <div className='area-input'>
-                            <select required value={stateLoc} onChange={e => setStateLoc(e.target)}>
+                            <select value={stateLoc} onChange={e => setStateLoc(e.target.value)}>
                                 <option></option>
                                 {stateList.map((i, key) =>
                                     <option key={key} value={i.id}>{i.name}</option>
