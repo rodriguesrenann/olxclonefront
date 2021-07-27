@@ -13,12 +13,12 @@ const fetchPost = async (endpoint, body) => {
     }
 
     const res = await fetch(BASEAPI + endpoint, {
-        method: 'POST',
+        method:'POST',
         headers: {
-            'Accept': 'application/json',
-            'Content-type': 'application/json'
+            'Accept':'application/json',
+            'Content-type':'application/json'
         },
-        body: JSON.stringify(body)
+        body:JSON.stringify(body),
     });
 
     const json = await res.json();
@@ -40,7 +40,7 @@ const fetchGet = async (endpoint, body = []) => {
         }
     }
 
-    const res = fetch(`${BASEAPI + endpoint}?${qs.stringify(body)}`);
+    const res = await fetch(`${BASEAPI + endpoint}?${qs.stringify(body)}`);
     const json = await res.json();
 
     if (json.notallowed) {
@@ -57,7 +57,13 @@ const OlxAPI = {
             { email, password }
         );
         return json;
-    }
+    },
+
+    getStates: async () => {
+        const json = await fetchGet('/states');
+        
+        return json.data;
+    }   
 }
 
 export default () => OlxAPI;
