@@ -17,7 +17,7 @@ const Page = () => {
     const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState('');
 
-    useEffect(() => {
+    useEffect((api) => {
         const getStates = async () => {
             const stateList = await api.getStates();
             setStateList(stateList);
