@@ -76,6 +76,9 @@ const HeaderArea = styled.div`
                 }
             }
         }
+        .logoutButton {
+            background: border-box;
+        }
     }
 `;
 

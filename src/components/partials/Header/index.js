@@ -30,7 +30,7 @@ const Header = () => {
                                     <Link to='/profile'>Minha conta</Link>
                                 </li>
                                 <li>
-                                    <button onClick={handleLogout}>Sair</button>
+                                    <button className='logoutButton' onClick={handleLogout}>Sair</button>
                                 </li>
                                 <li>
                                     <Link to='/newad' className='button'>Anuncie agora</Link>
