@@ -84,6 +84,15 @@ const OlxAPI = {
 
         return json.data;
     },
+
+    getAd: async(id, other = false) => {
+        const json = await fetchGet(`/ad/${id}`, {
+            other
+        });
+
+        console.log(json.data);
+        return json.data;
+    }
 }
 
 export default () => OlxAPI;
