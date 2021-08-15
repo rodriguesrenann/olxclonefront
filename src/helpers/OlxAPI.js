@@ -85,12 +85,12 @@ const OlxAPI = {
         return json.data;
     },
 
-    getAd: async(id, other = false) => {
+    getAd: async(id, others = true) => {
         const json = await fetchGet(`/ad/${id}`, {
-            other
+            others
         });
 
-        console.log(json.data);
+        console.log(json);
         return json.data;
     }
 }

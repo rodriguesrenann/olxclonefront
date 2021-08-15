@@ -12,7 +12,7 @@ const AdItem = (props) => {
         <Item className='aditem'>
             <Link to={`/ad/${props.data.id}`}>
                 <div className='itemImage'>
-                    <img src={props.data.image} alt='' />
+                    <img src={props.data.images[0]} alt='' />
                 </div>
                 <div className='itemName'>{props.data.title}</div>
                 <div className='itemPrice'>{price}</div>
