@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Fake = styled.div`
    background-color: #DDD;
-   height: ${props=>props.heigth || 20}px;
+   height: ${props => props.heigth || 20}px;
 `
 
 const PageArea = styled.div`
@@ -100,4 +100,30 @@ const PageArea = styled.div`
    }
 `;
 
-export  {PageArea, Fake} ;
+const OthersArea = styled.div`
+   h2 {
+      font-size: 20px;
+   }
+
+   .list {
+      display: flex;
+   }
+
+   .aditem {
+      width: 25%;
+   }
+`;
+
+const BreadCrumb = styled.div`
+   font-size: 13px;
+   margin-top: 20px;
+
+   a {
+      display: inline-block;
+      margin: 0px 5px;
+      text-decoration: underline;
+      color: #000;
+   }
+`
+
+export { PageArea, Fake, OthersArea, BreadCrumb };

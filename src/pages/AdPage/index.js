@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Slide } from 'react-slideshow-image';
 import AdItem from '../../components/partials/AdItem/index.js';
-import { PageArea, Fake } from './styled.js';
+import { PageArea, Fake, OthersArea, BreadCrumb } from './styled.js';
 import useApi from '../../helpers/OlxAPI';
 import 'react-slideshow-image/dist/styles.css';
 
 import { PageContainer } from '../../components/MainComponents';
+import { Link } from 'react-router-dom';
 const AdPage = () => {
 
     const api = useApi();
@@ -39,6 +40,14 @@ const AdPage = () => {
     //todo fakeloading
     return (
         <PageContainer>
+            <BreadCrumb>
+                Voce está aqui:
+                <Link to='/'>Home</Link>
+                /
+                <Link to={`/ads?state=${adInfo.state}`}>{adInfo.state}</Link>
+                /
+                <Link to=''>{adInfo.title}</Link>
+            </BreadCrumb>
             <PageArea>
                 <div className='leftSide'>
                     <div className='box'>
@@ -97,16 +106,18 @@ const AdPage = () => {
                 </div>
             </PageArea>
 
-            {adInfo.others &&
-                <>
-                    <h2>Outras ofertas do vendedor:</h2>
-                    <div className='list'>
-                        {adInfo.others.map((ad, key) =>
-                            <AdItem key={key} data={ad} />
-                        )}
-                    </div>
-                </>
-            }
+            <OthersArea>
+                {adInfo.others &&
+                    <>
+                        <h2>Outras ofertas do vendedor:</h2>
+                        <div className='list'>
+                            {adInfo.others.map((ad, key) =>
+                                <AdItem key={key} data={ad} />
+                            )}
+                        </div>
+                    </>
+                }
+            </OthersArea>
         </PageContainer>
     );
 }
