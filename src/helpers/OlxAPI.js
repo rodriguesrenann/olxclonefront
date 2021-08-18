@@ -13,12 +13,12 @@ const fetchPost = async (endpoint, body) => {
     }
 
     const res = await fetch(BASEAPI + endpoint, {
-        method:'POST',
+        method: 'POST',
         headers: {
-            'Accept':'application/json',
-            'Content-type':'application/json'
+            'Accept': 'application/json',
+            'Content-type': 'application/json'
         },
-        body:JSON.stringify(body),
+        body: JSON.stringify(body),
     });
 
     const json = await res.json();
@@ -41,13 +41,16 @@ const fetchGet = async (endpoint, body = []) => {
     }
 
     const res = await fetch(`${BASEAPI + endpoint}?${qs.stringify(body)}`);
+    const { status } = res;
+    const isUnauthorized = status === 403;
     const json = await res.json();
 
-    if (json.notallowed) {
+    if (isUnauthorized) {
         window.location.href = '/signin';
         return;
     }
 
+    console.log(res);
     return json;
 }
 
@@ -61,7 +64,7 @@ const OlxAPI = {
 
     register: async (name, email, password, passwordConfirm, stateLoc) => {
         const json = await fetchPost('/auth/register', {
-            name, email, password, password_confirmation:passwordConfirm, state:stateLoc
+            name, email, password, password_confirmation: passwordConfirm, state: stateLoc
         });
 
         return json;
@@ -69,23 +72,23 @@ const OlxAPI = {
 
     getStates: async () => {
         const json = await fetchGet('/states');
-        
+
         return json.data;
     },
-    
+
     getCategories: async () => {
         const json = await fetchGet('/categories');
 
-        return json.data;        
+        return json.data;
     },
 
-    getAds: async(options) => {
+    getAds: async (options) => {
         const json = await fetchGet('/ads', options);
 
         return json.data;
     },
 
-    getAd: async(id, others = true) => {
+    getAd: async (id, others = true) => {
         const json = await fetchGet(`/ad/${id}`, {
             others
         });
